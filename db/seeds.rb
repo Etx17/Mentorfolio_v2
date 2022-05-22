@@ -1,7 +1,16 @@
-# Drop the DB first
-db.destroy
+require 'faker'
 
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-# User.create(mail: "test@test.com", password)
+# Drop the DB first
+Mentor.delete_all
+Mentor.destroy_all
+User.delete_all
+User.destroy_all
+
+
+# Creating test user
+user = User.new
+user.email = 'test@test.com'
+user.password = 'password'
+user.save!
+
+# Seeding multiple users
