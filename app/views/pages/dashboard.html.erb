@@ -1,6 +1,7 @@
 <% if current_user.role == 'mentor' %>
   <h1> Welcome on your Dashboard as a Mentor </h1>
-  <%= render :mentor_dashboard %>
+  <%= render partial: 'mentor_dashboard' %>
 <% else %>
   <h1>Welcome, on your Dashboard <%= current_user.first_name %> </h1>
+  <p>You'r a <%= current_user.role %></p>
 <% end %>
