@@ -3,4 +3,19 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def about
+  end
+
+  def mentors
+    @mentors = Mentor.all
+  end
+
+  def dashboard
+    @user = current_user
+  end
+
+  def profile
+    @user = current_user
+  end
 end
