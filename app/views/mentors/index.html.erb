@@ -1,0 +1,10 @@
+<h1>Tous nos mentors</h1>
+<div class="container">
+  <% @mentors.each do |mentor| %>
+    <div class="mentor-card">
+      <%= User.find(mentor.user_id).first_name %>
+      <%= User.find(mentor.user_id).last_name %>
+      <%= User.find(mentor.user_id).bio %>
+    </div>
+  <% end %>
+</div>
