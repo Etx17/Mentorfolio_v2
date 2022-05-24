@@ -13,6 +13,10 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
+    if current_user.role = "mentor"
+      @mentor = Mentor.where(user_id: current_user.id)
+      @bookings_as_mentor = Booking.where(mentor_id: @mentor)
+    end
   end
 
   def profile
