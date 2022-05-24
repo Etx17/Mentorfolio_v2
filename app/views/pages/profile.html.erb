@@ -1,2 +1,3 @@
 <h1>Your profile</h1>
 <%= current_user.first_name %>
+<%= cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill %>

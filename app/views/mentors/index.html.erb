@@ -1,10 +1,19 @@
 <h1>Tous nos mentors</h1>
 <div class="container">
   <% @mentors.each do |mentor| %>
-    <div class="mentor-card">
-      <%= User.find(mentor.user_id).first_name %>
-      <%= User.find(mentor.user_id).last_name %>
-      <%= User.find(mentor.user_id).bio %>
+    <div class="mentor-card d-flex flex-column border shadow rounded">
+      <div class="mentor-card-image">
+        <%= cl_image_tag User.find(mentor.user_id).photo.key, height: 300, width: 300, crop: :fill %>
+      </div>
+      <div class="mentor-card-content d-flex flex-column">
+        <div class="d-flex">
+          <%= User.find(mentor.user_id).first_name %>
+          <%= User.find(mentor.user_id).last_name %>
+        </div>
+        <div>
+          <%= User.find(mentor.user_id).bio %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
