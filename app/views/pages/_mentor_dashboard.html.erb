@@ -1,5 +1,4 @@
-<h2>This is the partial imported with render. So it works if you can read it. Means you are a mentor</h2>
-
+<h1> Welcome on your Dashboard as a Mentor </h1>
 <% @bookings_as_mentor.each do |booking| %>
 <p>Booked by </p>
 <%= User.find(booking.user_id).email %>
