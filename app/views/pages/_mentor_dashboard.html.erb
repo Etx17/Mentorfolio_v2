@@ -1,22 +1,25 @@
 <h1> Welcome on your Dashboard as a Mentor </h1>
-<%= month_calendar(events: @meetings) do |date, meetings| %>
+<div class="container">
+<%= month_calendar(events: @meetings, end_attribute: :end_time) do |date, meetings| %>
   <%= date %>
 
   <% @meetings.each do |meeting| %>
-    <div class="meeting">
-      Free call with <strong><%= User.find(meeting.user_id).first_name %></strong>
-      at : <%= meeting.start_time %>
-    </div>
+    <% if (meeting.start_time.day == date.day) && (meeting.start_time.month == date.month) && (meeting.start_time.year == date.year)  %>
+      <div class="meeting">
+        Free call with <strong><%= User.find(meeting.user_id).first_name %></strong>
+        at : <%= meeting.start_time.hour %> h <%= meeting.start_time.min %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
+</div>
 
 
-
-<% @bookings_as_mentor.each do |booking| %>
-<p>Booked by </p>
-<%= User.find(booking.user_id).email %>
-<p>From: </p>
-<%= booking.start_time %>
-<p>to: </p>
-<%= booking.end_time %>
-<% end %>
+<%# <% @bookings_as_mentor.each do |booking| %>
+<%# <p>Booked by </p> %>
+<%# <%= User.find(booking.user_id).email %> %>
+<%# <p>From: </p> %>
+<%# <%= booking.start_time %> %>
+<%# <p>to: </p> %>
+<%# <%= booking.end_time %> %>
+<%# <% end %> %> %>
