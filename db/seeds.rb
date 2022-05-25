@@ -19,6 +19,9 @@ p "Creating test user..."
 user = User.new
 user.email = 'test@test.com'
 user.password = 'password'
+user.role = "mentor"
+user.first_name = "Jean-Testphane"
+user.last_name = "de la Testinière"
 user.save!
 
 # Making test user being a mentor
