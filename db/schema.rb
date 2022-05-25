@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_22_085044) do
+ActiveRecord::Schema.define(version: 2022_05_25_103739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,16 +43,16 @@ ActiveRecord::Schema.define(version: 2022_05_22_085044) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "bookings", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
+  create_table "meetings", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.bigint "user_id", null: false
     t.bigint "mentor_id", null: false
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["mentor_id"], name: "index_bookings_on_mentor_id"
-    t.index ["user_id"], name: "index_bookings_on_user_id"
+    t.index ["mentor_id"], name: "index_meetings_on_mentor_id"
+    t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
   create_table "mentors", force: :cascade do |t|
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2022_05_22_085044) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bookings", "mentors"
-  add_foreign_key "bookings", "users"
+  add_foreign_key "meetings", "mentors"
+  add_foreign_key "meetings", "users"
   add_foreign_key "mentors", "users"
 end

@@ -8,7 +8,7 @@
 require 'faker'
 # Drop the DB first
 p "Deleting db..."
-Booking.delete_all
+Meeting.delete_all
 Mentor.delete_all
 User.delete_all
 # p "Deleting mentors was a succes. Deleting Users..."
@@ -39,13 +39,13 @@ p "Seeding 10 users"
   user.save!
   p "user saved"
 
-  booking = Booking.new
-  booking.user_id = User.last.id
-  booking.mentor_id = Mentor.first.id
-  booking.start_date = Date.today
-  booking.end_date = Date.today + 10.days
-  booking.status = rand 3
-  booking.save!
+  meeting = Meeting.new
+  meeting.user_id = User.last.id
+  meeting.mentor_id = Mentor.first.id
+  meeting.start_time = Date.today
+  meeting.end_time = Date.today + 10.days
+  meeting.status = rand 3
+  meeting.save!
 end
 
 # Creating a mentor based on a user
