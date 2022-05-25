@@ -1,24 +1,22 @@
 <h1> Welcome on your Dashboard as a Mentor </h1>
-<%= month_calendar do |date| %>
-  <%= date %>
-<% end %>
-
 <%= month_calendar(events: @meetings) do |date, meetings| %>
   <%= date %>
 
-  <% meetings.each do |meeting| %>
-    <div class="meeting">  <-- We will add some style to the meeting class later so let's add it now -->
-      <p><%= meeting.name %></p>
+  <% @meetings.each do |meeting| %>
+    <div class="meeting">
+      Free call with <strong><%= User.find(meeting.user_id).first_name %></strong>
+      at : <%= meeting.start_time %>
     </div>
   <% end %>
 <% end %>
+
 
 
 <% @bookings_as_mentor.each do |booking| %>
 <p>Booked by </p>
 <%= User.find(booking.user_id).email %>
 <p>From: </p>
-<%= booking.start_date %>
+<%= booking.start_time %>
 <p>to: </p>
-<%= booking.end_date %>
+<%= booking.end_time %>
 <% end %>

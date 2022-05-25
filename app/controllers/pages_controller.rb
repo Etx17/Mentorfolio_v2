@@ -17,9 +17,11 @@ class PagesController < ApplicationController
       @mentor = Mentor.where(user_id: current_user.id)
       @bookings_as_mentor = Meeting.where(mentor_id: @mentor)
 
+
       start_date = params.fetch(:start_date, Date.today).to_date
-      # For a monthly view:
-      @meetings = Meeting.where(start_date: start_time.beginning_of_month.beginning_of_week..start_time.end_of_month.end_of_week)
+
+    # Or, for a weekly view:
+    @meetings = Meeting.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
     end
   end
 
