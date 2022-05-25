@@ -12,6 +12,10 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in?  %>
           <li class="nav-item active d-flex flex-row">
+            id: <%= current_user.id %>, role:
+            <%= current_user.role %>
+          </li>
+          <li class="nav-item active d-flex flex-row">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">

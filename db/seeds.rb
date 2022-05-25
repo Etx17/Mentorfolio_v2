@@ -28,7 +28,8 @@ mentor.save!
 p "Test user created"
 
 p "Seeding 10 users"
-10.times do
+i = 1
+until i == 10 do
   user = User.new
   user.email = Faker::Internet.email
   user.password = 'password'
@@ -42,10 +43,11 @@ p "Seeding 10 users"
   meeting = Meeting.new
   meeting.user_id = User.last.id
   meeting.mentor_id = Mentor.first.id
-  meeting.start_time = Date.today
-  meeting.end_time = Date.today + 10.days
+  meeting.start_time = DateTime.now + (300 * i-1).minutes
+  meeting.end_time = DateTime.now + (300 * i).minutes
   meeting.status = rand 3
   meeting.save!
+  i += 1
 end
 
 # Creating a mentor based on a user
