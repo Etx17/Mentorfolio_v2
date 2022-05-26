@@ -1,1 +1,7 @@
 <%= render 'meetings/form' %>
+<% if current_user.role == "student" %>
+<% else %>
+  <div class="container">
+    <h3>Mentors don't book other mentors. If you really want to, create a smurf account!</h3>
+  </div>
+<% end %>
