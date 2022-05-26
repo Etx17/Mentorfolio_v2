@@ -13,16 +13,13 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
-    if current_user.role = "mentor"
+    if @user.role == "mentor"
       @mentor = Mentor.where(user_id: current_user.id)
-      @bookings_as_mentor = Meeting.where(mentor_id: @mentor)
-
-
       start_date = params.fetch(:start_date, Date.today).to_date
-
-    # Or, for a weekly view:
-    @meetings = Meeting.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
+      @meetings = Meeting.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
     end
+    @pending_meetings = Meeting.where(status: 0)
+
   end
 
   def profile

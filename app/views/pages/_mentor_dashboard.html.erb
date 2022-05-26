@@ -1,19 +1,30 @@
 <h1> Welcome on your Dashboard as a Mentor </h1>
+
 <div class="container">
-<%= month_calendar(events: @meetings, end_attribute: :end_time) do |date, meetings| %>
-  <%= date %>
+  <div class=""> <!-- Pending bookings list-->
+    <h2>Meetings requests</h2>
+    <ul class="list-group">
+      <% @pending_meetings.each do |pending_meeting| %>
+          <li class="list-group-item"><%= User.find(pending_meeting.user_id).first_name %> is requesting a free call </li>
+      <% end %>
+    </ul>
+  </div>
 
-  <% @meetings.each do |meeting| %>
-    <% if (meeting.start_time.day == date.day) && (meeting.start_time.month == date.month) && (meeting.start_time.year == date.year)  %>
-      <div class="meeting">
-        Free call with <strong><%= User.find(meeting.user_id).first_name %></strong>
-        at : <%= meeting.start_time.hour %> h <%= meeting.start_time.min %>
-      </div>
+  <div> <!-- Calendrier -->
+    <h2>Your calendar (and you need to style it)</h2>
+    <%= month_calendar(events: @meetings, end_attribute: :end_time) do |date, meetings| %>
+      <%= date %>
+      <% @meetings.each do |meeting| %>
+        <% if (meeting.start_time.day == date.day) && (meeting.start_time.month == date.month) && (meeting.start_time.year == date.year)  %>
+          <div class="meeting">
+            Free call with <strong><%= User.find(meeting.user_id).first_name %></strong>
+            at : <%= meeting.start_time.hour %> h <%= meeting.start_time.min %>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
 </div>
-
 
 <%# <% @bookings_as_mentor.each do |booking| %>
 <%# <p>Booked by </p> %>
