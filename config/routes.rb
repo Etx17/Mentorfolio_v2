@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'meeting/new'
-  get 'meeting/create'
   root 'pages#home'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
   devise_scope :user do
@@ -13,4 +11,5 @@ Rails.application.routes.draw do
   get '/about', to: 'pages#about'
 
   resources :mentors, only: %i[index show]
+  resources :meetings, except: :index
 end

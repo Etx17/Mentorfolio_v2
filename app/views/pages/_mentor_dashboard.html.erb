@@ -6,6 +6,7 @@
     <ul class="list-group">
       <% @pending_meetings.each do |pending_meeting| %>
           <li class="list-group-item"><%= User.find(pending_meeting.user_id).first_name %> is requesting a free call </li>
+          <%= simple_form_for(pending_meeting) %>
       <% end %>
     </ul>
   </div>
