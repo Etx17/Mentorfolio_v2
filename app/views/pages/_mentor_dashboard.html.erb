@@ -5,19 +5,18 @@
     <h2>Meetings requests</h2>
     <ul class="list-group">
       <% @pending_meetings.each do |pending_meeting| %>
-          <li class="list-group-item">
+          <li class="list-group-item mb-3">
             <%= User.find(pending_meeting.user_id).first_name %> is requesting a free call <br>
             <!-- COde starting here need to be updated -->
             Schedule: <%= pending_meeting.start_time.strftime("%c") %> <br>
-          </li>
           <div class="status">
             <p id="pending"><%= "Confirm?" %></p>
             <div class="d-flex justify-content-between">
-              <a href="meeting/<%= pending_meeting.id %>/validate"><i class="fa-solid fa-check m-3" style="color: green"></i></a>
-              <a href="meeting/<%= pending_meeting.id %>/decline"><i class="fa-solid fa-xmark m-3" style="color: red"></i></a>
+              <a href="meeting/<%= pending_meeting.id %>/validate"><i class="fas fa-check m-3" style="color: green"></i></a>
             </div>
-            <%= link_to "", meeting_path(pending_meeting), class:"links fas fa-eye" %>
+            <%# <%= link_to "", meeting_path(pending_meeting), class:"links fas fa-eye" %>
           </div>
+          </li>
           <!-- until here -->
       <% end %>
     </ul>

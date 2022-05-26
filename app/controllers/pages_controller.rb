@@ -17,8 +17,10 @@ class PagesController < ApplicationController
       @mentor = Mentor.where(user_id: current_user.id)
       start_date = params.fetch(:start_date, Date.today).to_date
       @meetings = Meeting.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
+      @pending_meetings = Meeting.where(status: 0)
+    else
+      @meetings = Meeting.where(user: @user)
     end
-    @pending_meetings = Meeting.where(status: 0)
 
   end
 

@@ -1,2 +1,15 @@
 <h1>Welcome, on your Student Dashboard, <%= current_user.first_name %> </h1>
 <p>You'r a <%= current_user.role %></p>
+<ul class="list-group">
+  <% @meetings.each do |meeting| %>
+  <li class="list-group-item">
+    <%=  meeting.status %>
+    <%=  meeting.start_time %>
+    <% if !meeting.mentor.nil? %>
+      Mentor's last name: <%= User.find(Mentor.find(meeting.mentor_id).user_id).last_name %>
+    <% else %>
+      Waiting for your mentor to confirm
+    <% end %>
+  </li>
+  <% end %>
+</ul>
