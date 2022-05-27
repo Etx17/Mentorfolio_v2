@@ -7,5 +7,6 @@ class Meeting < ApplicationRecord
     cancelled: 2
   }
   validates :start_time, presence: true
+  validates :start_time, uniqueness: true
   # Validates startind_date: minutes must be 00 or 30.
 end
