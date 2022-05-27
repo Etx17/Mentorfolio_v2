@@ -1,3 +1,11 @@
-<h1>Bienvenue sur Mentorfolio</h1>
-<p>Trouvez votre mentor et bénéficiez d'un accompagnement pour la création de votre portfolio</p>
-<%= link_to "Trouvez un mentor maintenant", new_meeting_url %>
+
+<div id="banner">
+  <%= render 'shared/navbar' %>
+  <div class="d-flex flex-column justify-content-center">
+    <div class="text-center home-title ">
+      <h1>TROUVEZ VOTRE MENTOR</h1>
+      <h3>Créez votre portfolio pour être embauché</p>
+      <%= link_to "C'est parti !", new_meeting_url, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
