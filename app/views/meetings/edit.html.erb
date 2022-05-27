@@ -1,0 +1,11 @@
+<h1>Request of meeting from <%= User.find(@meeting.user_id).first_name%> <%= User.find(@meeting.user_id).last_name %></h1>
+
+<h3>Details</h3>
+<p>Time: <%= @meeting.start_time %></p>
+
+<strong>To confirm this booking, click on the button below</strong>
+<%= simple_form_for(@meeting) do |f| %>
+  <%= f.input :mentor, as: :hidden, value: @mentor %>
+  <%= f.input :status, as: :hidden, default: "confirmed" %>
+<%= f.submit "Confirm meeting" %>
+<% end %>

@@ -12,9 +12,11 @@
           <div class="status">
             <p id="pending"><%= "Confirm?" %></p>
             <div class="d-flex justify-content-between">
-              <a href="meeting/<%= pending_meeting.id %>/validate"><i class="fas fa-check m-3" style="color: green"></i></a>
+               <%= link_to "See request in details to confirm", edit_meeting_path(pending_meeting) %>
+              <%# <a href="meeting/<=pending_meeting.id >/validate"><i class="fas fa-check m-3" style="color: green"></i></a> %>
             </div>
-            <%# <%= link_to "", meeting_path(pending_meeting), class:"links fas fa-eye" %>
+
+
           </div>
           </li>
           <!-- until here -->

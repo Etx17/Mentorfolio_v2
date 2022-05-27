@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   resources :mentors, only: %i[index show]
   resources :meetings, except: :index
+
+  get 'meeting/:id/validate', to: 'meetings#validate'
 end
