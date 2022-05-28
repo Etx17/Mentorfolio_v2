@@ -2,7 +2,7 @@
 import flatpickr from "flatpickr";
 
 const initFlatpickr = () => {
-  flatpickr(".datepicker", {enableTime: true, minuteIncrement: 30});
+  flatpickr(".datepicker", { enableTime: true, minuteIncrement: 30, dateFormat: "Y-m-d H:i"});
 }
 
 export { initFlatpickr };
