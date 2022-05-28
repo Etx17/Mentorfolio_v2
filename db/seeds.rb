@@ -30,6 +30,14 @@ mentor.user_id = User.first.id
 mentor.save!
 p "Test user created"
 
+p "creating mentor@mentor.com and user@user.com"
+mentor_user = User.create(email: "mentor@mentor.com", password:"password", role: "mentor")
+user = User.create(email: "user@user.com", password: "password", role: "student")
+mentor = Mentor.create(user: mentor_user)
+meeting = Meeting.create(user: user, mentor: mentor)
+message = Message.create(user: user, mentor: mentor, title: "Trouver son idée de produit", description: "Tu dois trouver une idée de produit à faire en portfolio qui ressemble par exemple à une boite que tu vises. Pourquoi toi qui voudrait bosser chez AirFrance, ne travaillerais tu pas sur un système de réservation quel qu'il soit ? Pour la prochaine fois : avoir trouvé ton idée et conceptualisé la base de donnée et toutes les features que tu veux.")
+p "mentor, user, meeting and message created. Go on user@user or mentor@mentor to check."
+
 p "Seeding 10 users"
 i = 1
 until i == 10 do

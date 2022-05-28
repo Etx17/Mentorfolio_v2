@@ -13,7 +13,6 @@
             <p id="pending"><%= "Confirm?" %></p>
             <div class="d-flex justify-content-between">
                <%= link_to "See request in details to confirm", edit_meeting_path(pending_meeting) %>
-              <%# <a href="meeting/<=pending_meeting.id >/validate"><i class="fas fa-check m-3" style="color: green"></i></a> %>
             </div>
 
 
@@ -38,13 +37,30 @@
       <% end %>
     <% end %>
   </div>
-</div>
 
-<%# <% @bookings_as_mentor.each do |booking| %>
-<%# <p>Booked by </p> %>
-<%# <%= User.find(booking.user_id).email %> %>
-<%# <p>From: </p> %>
-<%# <%= booking.start_time %> %>
-<%# <p>to: </p> %>
-<%# <%= booking.end_time %> %>
-<%# <% end %> %> %>
+  <div>
+    <h1>My students </h1>
+    <ul class="list-group">
+      <% @meetings.each do |meeting| %>
+      <li class="list-group-item">
+        <%= User.find(meeting.user_id).first_name %> -
+        <%= link_to "Send message", new_message_path %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+   <div>
+    <!-- <h1>Messages sent </h1>
+    <ul class="list-group">
+      <% @messages.each do |message| %>
+      <li class="list-group-item">
+        Sent to :<%= User.find(meeting.user_id).first_name %> <br>
+        Sent at: <%= message.created_at %> <br>
+        Title: <%= message.title %>
+
+      </li>
+      <% end %>
+    </ul> -->
+  </div>
+</div>

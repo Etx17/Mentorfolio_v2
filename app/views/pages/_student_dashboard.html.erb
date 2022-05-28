@@ -17,14 +17,19 @@
     <% end %>
   <% end %>
 
+  <% if @validated_meeting %>
+    <%= @validated_meeting.mentor %> is your mentor.
+  <% end %>
+
   <div class="messages-list">
     <h1> Résumé du dernier call et directives </h1>
     <ul class="list-group">
+    <%= @messages.each do |message| %>
       <li class="list-group-item">
-        <h2>Message title - 27 Juin 2022</h2>
-        <p>Description of the assignements. Example : Last time we saw that you need to improve this area of your project. Here is a list of resources you can use. We saw how to improve your page loading time with ajax requests instead of loading all messages of the database. Same with reviews</p>
-        <small>assignement: Finish the db design and user stories</small>
+        <h2><%= message.title %> - <%= message.created_at %></h2>
+        <p><%= message.description %></p>
       </li>
+    <% end %>
     </ul>
   </div>
 </ul>

@@ -1,0 +1,20 @@
+<%= simple_form_for(@message) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :title, hint: "Add some title to your message that is a good sum up" %>
+  <%= f.input :description, hint: "Take some time to write some guidelines and deadlines for your student " %>
+  <%= f.input :mentor, as: :hidden, default: @mentor %>
+  <%= f.input :user, as: :hidden, default: @meeting.user %>
+
+  <%= f.submit "Réservez maintenant", class: "btn btn-primary"  %>
+  <% end %>
+</div>
