@@ -2,14 +2,29 @@
 <p>You'r a <%= current_user.role %></p>
 <ul class="list-group">
   <% @meetings.each do |meeting| %>
-  <li class="list-group-item">
-    <%=  meeting.status %>
-    <%=  meeting.start_time %>
-    <% if !meeting.mentor.nil? %>
-      Mentor's last name: <%= User.find(Mentor.find(meeting.mentor_id).user_id).last_name %>
-    <% else %>
-      Waiting for your mentor to confirm
+    <% if meeting.start_time > Date.new %>
+      <li class="list-group-item">
+        Statut de votre réservation:
+        <%=  meeting.status %> <br>
+        Horaire:
+        <%=  meeting.start_time %> <br>
+        <% if meeting.status == 1 %>
+          <small class="text-success">Mentor's last name: <%= User.find(Mentor.find(meeting.mentor_id).user_id).last_name %></small>
+        <% else %>
+          <small class="text-danger">Waiting for your mentor to confirm</small>
+        <% end %>
+      </li>
     <% end %>
-  </li>
   <% end %>
+
+  <div class="messages-list">
+    <h1> Résumé du dernier call et directives </h1>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h2>Message title - 27 Juin 2022</h2>
+        <p>Description of the assignements. Example : Last time we saw that you need to improve this area of your project. Here is a list of resources you can use. We saw how to improve your page loading time with ajax requests instead of loading all messages of the database. Same with reviews</p>
+        <small>assignement: Finish the db design and user stories</small>
+      </li>
+    </ul>
+  </div>
 </ul>

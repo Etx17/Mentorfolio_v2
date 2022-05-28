@@ -1,5 +1,11 @@
-<% if current_user.role == 'mentor' %>
-  <%= render partial: 'mentor_dashboard' %>
-<% else %>
-  <%= render partial: 'student_dashboard' %>
-<% end %>
+<div id="banner">
+  <%= render partial: 'shared/navbar' %>
+  <div class="container bg-white p-3 rounded">
+    <% if current_user.role == 'mentor' %>
+      <%= render partial: 'mentor_dashboard' %>
+    <% else %>
+      <%= render partial: 'student_dashboard' %>
+    </div>
+    <% end %>
+  </div>
+</div>
