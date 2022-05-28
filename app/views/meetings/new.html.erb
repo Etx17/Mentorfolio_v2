@@ -1,7 +1,10 @@
-<%= render 'meetings/form' %>
+<div id="banner">
+<%= render 'shared/navbar' %>
 <% if current_user.role == "student" %>
+  <%= render 'meetings/form' %>
 <% else %>
   <div class="container">
     <h3>Mentors don't book other mentors. If you really want to, create a smurf account!</h3>
   </div>
 <% end %>
+</div>
