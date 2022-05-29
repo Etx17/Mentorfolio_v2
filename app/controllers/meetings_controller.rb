@@ -39,7 +39,7 @@ class MeetingsController < ApplicationController
       flash.alert = "meeting saved successfully"
       redirect_to dashboard_path
     else
-      flash.alert = "smth went wrong"
+      flash.alert = @meeting.errors.full_messages #"smth went wrong"
       redirect_to dashboard_path
     end
   end

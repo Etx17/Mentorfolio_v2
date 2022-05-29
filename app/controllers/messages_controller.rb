@@ -3,13 +3,13 @@ class MessagesController < ApplicationController
     if current_user.role == "student"
       @messages = Message.where(user: current_user)
     else
-      @mentor = Mentor.find(user: current_user)
+      @mentor = Mentor.find_by(user: current_user)
       @messages = Message.where(mentor: @mentor)
     end
   end
 
   def new
-    @mentor = Mentor.find(user: current_user)
+    @mentor = Mentor.find_by(user: current_user)
     @meeting = Meeting.find(params[:id])
     @student = @meeting.user
     @message = Message.new
