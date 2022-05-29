@@ -2,6 +2,7 @@
 
 <div class="container">
 <h5>Meetingsfor thismentor :<%= @meetings.where(mentor: @mentor).count %></h5>
+<h5> My meetings ( @meetings du dessus.select) <%= @my_meetings.count %></h5>
 <h5>Total of meetings ( meetings all): <%= @meetings.count %></h5>
   <div class=""> <!-- Pending bookings list-->
     <h2>Meetings requests  (<%= @pending_meetings.count %>)</h2>
@@ -26,10 +27,10 @@
   </div>
 
   <div> <!-- Calendrier -->
-    <h2>Your calendar (and you need to style it)</h2>
-    <%= month_calendar(events: @meetings, end_attribute: :end_time) do |date, meetings| %>
+    <h2>Your calendar (Reussir a n'afficher que MES meetings et pas tous les meetings)</h2>
+    <%= month_calendar(events: @my_meetings, end_attribute: :end_time) do |date, meetings| %>
       <%= date %>
-      <% @meetings.each do |meeting| %>
+      <% @my_meetings.each do |meeting| %>
         <% if (meeting.start_time.day == date.day) && (meeting.start_time.month == date.month) && (meeting.start_time.year == date.year)  %>
           <div class="meeting">
             Free call with <strong><%= User.find(meeting.user_id).first_name %></strong>

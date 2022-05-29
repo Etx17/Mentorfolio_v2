@@ -33,14 +33,9 @@ class MeetingsController < ApplicationController
     @user = current_user
     @meeting = Meeting.find(params[:id])
     @mentor = Mentor.find_by(user: current_user)
-    p "params mentor of meeting deleted correctly"
-    p @meeting.mentor.id, "-> this is the mentor id before being updated"
+    p "-> MENTOR ID BEFORE UPDATE:#{@meeting.mentor.id}"
     if @meeting.update(mentor: @mentor) && @meeting.update(status: 1)
-    # if @meeting.update(meeting_params)
-
-      p @meeting.mentor.id, "-> this is the mentor id after being updated"
-
-      p "the status of the meeting is now", @meeting.status
+      p "-> MENTOR ID AFTER UPDATE:#{@meeting.mentor.id} ; STATUS: #{@meeting.status}"
       flash.alert = "meeting saved successfully"
       redirect_to dashboard_path
     else
