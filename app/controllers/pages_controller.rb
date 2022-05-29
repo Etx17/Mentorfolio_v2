@@ -17,6 +17,7 @@ class PagesController < ApplicationController
       @messages = Message.where(mentor: @mentor)
       start_date = params.fetch(:start_date, Date.today).to_date
       @meetings = Meeting.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
+      @my_meetings = @meetings.where(mentor: @mentor)
       @pending_meetings = Meeting.where(status: 0)
     else
       @meetings = Meeting.where(user: current_user)
