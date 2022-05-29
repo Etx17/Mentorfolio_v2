@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'messages/new'
-  get 'messages/edit'
-  get 'messages/update'
-  get 'messages/delete'
   root 'pages#home'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
   devise_scope :user do
@@ -17,5 +13,4 @@ Rails.application.routes.draw do
   resources :mentors, only: %i[index show]
   resources :meetings, except: :index
   resources :messages
-  get 'meeting/:id/validate', to: 'meetings#validate'
 end
