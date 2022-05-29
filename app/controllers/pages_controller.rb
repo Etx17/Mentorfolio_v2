@@ -12,12 +12,11 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @user = current_user
-    if @user.role == "mentor"
+    if current_user.role == "mentor"
       @mentor = Mentor.where(user: current_user)
       @messages = Message.where(mentor: @mentor)
       start_date = params.fetch(:start_date, Date.today).to_date
-      @meetings = Meeting.where(start_time: start_date.beginning_of_week..start_date.end_of_week, mentor: @mentor)
+      @meetings = Meeting.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
       @pending_meetings = Meeting.where(status: 0)
     else
       @meetings = Meeting.where(user: current_user)

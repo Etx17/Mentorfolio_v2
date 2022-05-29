@@ -5,7 +5,7 @@
 
 <strong>To confirm this booking, click on the button below</strong>
 <%= simple_form_for(@meeting) do |f| %>
-  <%= f.input :mentor, as: :hidden, value: @mentor %>
-  <%= f.input :status, as: :hidden, default: "confirmed" %>
+  <%= f.input :mentor,as: :hidden, value: @mentor %>
+  <%= f.input :status, as: :hidden, value: 1 %>
 <%= f.submit "Confirm meeting" %>
 <% end %>

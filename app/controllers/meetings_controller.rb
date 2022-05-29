@@ -7,7 +7,7 @@ class MeetingsController < ApplicationController
 
   def create
     @user = current_user
-    @meeting = Meeting.new(meeting_params)
+    @meeting = Meeting.new(params[:status, :mentor])
     @meeting.user = @user
     @meeting.status = 0
     # this first mentor is the test mentor, so nobody has the login. and we can update it
@@ -25,16 +25,18 @@ class MeetingsController < ApplicationController
   def edit
     @meeting = Meeting.find(params[:id])
     @user = current_user
-    @mentor = Mentor.where(user: current_user)
+    @mentor = Mentor.find_by(user: current_user)
   end
 
   def update
+    p ' LETS UPDATE '
     @user = current_user
     @meeting = Meeting.find(params[:id])
-    @mentor = Mentor.where(user: current_user)
-    @meeting.status = 1
+    @mentor = Mentor.find_by(user: current_user)
+    p "params mentor of meeting deleted correctly"
     p @meeting.mentor.id, "-> this is the mentor id before being updated"
-    if @meeting.update(meeting_params)
+    if @meeting.update(mentor: @mentor) && @meeting.update(status: 1)
+    # if @meeting.update(meeting_params)
 
       p @meeting.mentor.id, "-> this is the mentor id after being updated"
 
@@ -52,7 +54,7 @@ class MeetingsController < ApplicationController
   #   @mentor = Mentor.where(user: current_user)
   #   # authorize @meeting
   #   @meeting.status = 1
-  #   @meeting.update(meeting_params)
+  #   @meeting.update(params[:status, :mentor])
   #   @meeting.save
 
   #   redirect_to dashboard_path
@@ -61,6 +63,6 @@ class MeetingsController < ApplicationController
   private
 
   def meeting_params
-    params.require(:meeting).permit(:start_time, :user_id, :mentor_id, :status)
+    params.require(:meeting).permit(:start_time, :user, :mentor, :status)
   end
 end
