@@ -27,7 +27,7 @@
   </div>
 
   <div> <!-- Calendrier -->
-    <h2>Your calendar (Reussir a n'afficher que MES meetings et pas tous les meetings)</h2>
+    <h2>Your calendar</h2>
     <%= month_calendar(events: @my_meetings, end_attribute: :end_time) do |date, meetings| %>
       <%= date %>
       <% @my_meetings.each do |meeting| %>
@@ -40,7 +40,7 @@
       <% end %>
     <% end %>
   </div>
-
+ <!--
   <div>
     <h1>My students </h1>
     <ul class="list-group">
@@ -54,7 +54,7 @@
   </div>
 
    <div>
-    <!-- <h1>Messages sent </h1>
+   <h1>Messages sent </h1>
     <ul class="list-group">
       <% @messages.each do |message| %>
       <li class="list-group-item">

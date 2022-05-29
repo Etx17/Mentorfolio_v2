@@ -16,20 +16,21 @@
       </li>
     <% end %>
   <% end %>
+</ul>
 
   <% if @validated_meeting %>
     <%= @validated_meeting.mentor %> is your mentor.
+    <div class="messages-list">
+      <h1> Résumé du dernier call et directives </h1>
+      <ul class="list-group">
+        <%= @messages.each do |message| %>
+          <li class="list-group-item">
+            <h2><%= message.title %> - <%= message.created_at %></h2>
+            <p><%= message.description %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% else %>
+    <h5>You don't have any mentor yet. <%= link_to "Find a mentor in 1 clic", new_meeting_url, class: "btn btn-primary" %></h5>
   <% end %>
-
-  <div class="messages-list">
-    <h1> Résumé du dernier call et directives </h1>
-    <ul class="list-group">
-    <%= @messages.each do |message| %>
-      <li class="list-group-item">
-        <h2><%= message.title %> - <%= message.created_at %></h2>
-        <p><%= message.description %></p>
-      </li>
-    <% end %>
-    </ul>
-  </div>
-</ul>

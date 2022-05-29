@@ -22,7 +22,7 @@ class PagesController < ApplicationController
     else
       @meetings = Meeting.where(user: current_user)
       @messages = Message.where(user: current_user)
-      @validated_meeting = Meeting.where(user: current_user, status: "confirmed")
+      @validated_meeting = Meeting.find_by(user: current_user, status: "confirmed")
     end
   end
 
