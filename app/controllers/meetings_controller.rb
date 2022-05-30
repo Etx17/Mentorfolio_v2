@@ -7,7 +7,8 @@ class MeetingsController < ApplicationController
 
   def create
     @user = current_user
-    @meeting = Meeting.new(params[:status, :mentor])
+    # @meeting = Meeting.new([params:status, :mentor])
+    @meeting = Meeting.new(meeting_params)
     @meeting.user = @user
     @meeting.status = 0
     # this first mentor is the test mentor, so nobody has the login. and we can update it
