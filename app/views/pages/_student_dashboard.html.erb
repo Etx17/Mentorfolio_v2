@@ -31,6 +31,7 @@
         <% end %>
       </ul>
     </div>
+  <% elsif @meetings.any?%>
   <% else %>
     <h5>You don't have any mentor yet. <%= link_to "Find a mentor in 1 clic", new_meeting_url, class: "btn btn-primary" %></h5>
   <% end %>
