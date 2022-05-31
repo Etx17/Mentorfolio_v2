@@ -1,3 +1,18 @@
-<h1>Your profile</h1>
-<%= current_user.first_name %>
-<%= cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill %>
+<div id="banner">
+  <%= render "shared/navbar" %>
+  <div class="wrapper">
+    <div class="container">
+      <div class="d-flex">
+        <div class="d-flex flex-column ">
+          <%= cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill %>
+          <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
+
+          <div class="border bg-transparent p-2 rounded">
+            <h1>Bio:</h1><p class="text-white"><%= current_user.bio %> </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
