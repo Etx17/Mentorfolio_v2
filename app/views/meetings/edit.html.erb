@@ -1,21 +1,26 @@
-<h1>Request of meeting from <%= User.find(@meeting.user_id).first_name%> <%= User.find(@meeting.user_id).last_name %></h1>
-
-<h3>Details</h3>
-<p>Time: <%= @meeting.start_time %></p>
-
-<strong>To confirm this booking, click on the button below</strong>
-<%= simple_form_for(@meeting) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<div id="banner">
+<%= render 'shared/navbar' %>
+<div class="container">
+  <div class="mt-5 p-3 bg-white rounded">
+    <h2>Request of meeting from <strong><%= User.find(@meeting.user_id).first_name%> <%= User.find(@meeting.user_id).last_name %><strong></h2>
+    <div class="border p-2">
+      <p>Time: <%= @meeting.start_time.strftime("%c") %></p>
+      <strong>To confirm this booking, click on the button below</strong>
+      <%= simple_form_for(@meeting) do |f| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+            <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= f.input :mentor,as: :hidden, value: @mentor %>
+        <%= f.input :status, as: :hidden, value: 1 %>
+      <%= f.submit "Confirm meeting" %>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.input :mentor,as: :hidden, value: @mentor %>
-  <%= f.input :status, as: :hidden, value: 1 %>
-<%= f.submit "Confirm meeting" %>
-<% end %>
+      </div>
+  </div>
+</div>
