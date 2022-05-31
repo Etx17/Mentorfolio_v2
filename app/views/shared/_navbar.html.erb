@@ -12,8 +12,10 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in?  %>
           <li class="nav-item active d-flex flex-row">
-            id: <%= current_user.id %>, role:
-            <%= current_user.role %>
+            <div class="nav-link text-white">
+              Vous êtes connectés en tant que:
+              <%= current_user.role %>
+            </div>
           </li>
           <li class="nav-item active d-flex flex-row">
             <%= link_to "Home", root_path, class: "nav-link text-white h3" %>
@@ -27,9 +29,9 @@
           <li class="nav-item dropdown">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/etx17", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item text-white" %>
-              <%= link_to "See my profile", profile_path, class: "dropdown-item text-white" %>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item text-white" %>
+              <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "See my profile", profile_path, class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
