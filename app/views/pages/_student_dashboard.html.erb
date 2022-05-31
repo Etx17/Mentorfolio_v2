@@ -4,12 +4,11 @@
   <% @meetings.each do |meeting| %>
     <% if meeting.start_time > Date.new %>
       <li class="list-group-item">
-        Statut de votre réservation:
-        <%=  meeting.status %> <br>
-        Horaire:
-        <%=  meeting.start_time %> <br>
-        <% if meeting.status == 1 %>
-          <small class="text-success">Mentor's last name: <%= User.find(Mentor.find(meeting.mentor_id).user_id).last_name %></small>
+        <% if meeting.status == "confirmed" %>
+          <small class="text-success">Votre réservation est confirmée! <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> va vous contacter par mail.</small>  <br>
+          Horaire: <br>
+          <%=  meeting.start_time.strftime("%c") %> <br>
+          Mentor: <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> <%= User.find(Mentor.find(meeting.mentor_id).user_id).last_name %> <%= link_to "Voir le profil", mentor_path(meeting.mentor) %>
         <% else %>
           <small class="text-danger">Waiting for your mentor to confirm</small>
         <% end %>
@@ -19,7 +18,7 @@
 </ul>
 
   <% if @validated_meeting %>
-    <%= @validated_meeting.mentor %> is your mentor.
+    <%# <% @validated_meeting.mentor %>
     <div class="messages-list">
       <h1> Résumé du dernier call et directives </h1>
       <ul class="list-group">
