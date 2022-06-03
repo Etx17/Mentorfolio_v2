@@ -3,7 +3,7 @@
   <div class="d-flex flex-column align-items-center ">
     <h1 class="p-5">Log in</h1>
     <div class="d-flex justify-content-center">
-      <div class="row col-lg-4 bg-white rounded p-3">
+      <div class="row col-5 bg-white opacity-75 rounded p-3">
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-inputs">
               <%= f.input :email,
@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-actions">
-              <%= f.button :submit, "Log in" %>
+              <%= f.button :submit, "Log in", class: "btn-secondary" %>
             </div>
           <% end %>
 
