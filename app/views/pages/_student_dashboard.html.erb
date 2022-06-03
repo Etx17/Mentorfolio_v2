@@ -10,13 +10,16 @@
           <%=  meeting.start_time.strftime("%c") %> <br>
           Mentor: <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> <%= User.find(Mentor.find(meeting.mentor_id).user_id).last_name %> <%= link_to "Voir le profil", mentor_path(meeting.mentor) %>
         <% else %>
-          <small class="text-danger">Waiting for your mentor to confirm</small>
+          <small class="text-danger">Waiting for <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> to confirm</small><br>
+          Horaire: <br>
+          <%=  meeting.start_time.strftime("%c") %> <br>
         <% end %>
       </li>
     <% end %>
   <% end %>
 </ul>
 
+<!--
   <% if @validated_meeting %>
     <%# <% @validated_meeting.mentor %>
     <div class="messages-list">
@@ -34,3 +37,4 @@
   <% else %>
     <h5>You don't have any mentor yet. <%= link_to "Find a mentor in 1 clic", new_meeting_url, class: "btn btn-primary" %></h5>
   <% end %>
+-->
