@@ -1,35 +1,35 @@
-<h1> Welcome on your Dashboard as a Mentor </h1><i class="fas fa-ambulance"></i>
+<h1> Welcome on your Dashboard as a Mentor </h1>
 
-<div class="container">
-<h5>Meetingsfor thismentor :<%= @meetings.where(mentor: @mentor).count %></h5>
-<h5> My meetings ( @meetings du dessus.select) <%= @my_meetings.count %></h5>
-<h5>Total of meetings ( meetings all): <%= @meetings.count %></h5>
-  <div class=""> <!-- Pending bookings list-->
-    <h2>Meetings requests  (<%= @pending_meetings.count %>)</h2>
-    <ul class="list-group">
-      <% @pending_meetings.each do |pending_meeting| %>
-          <li class="list-group-item mb-3">
-            <% if pending_meeting.start_date > Time.now %>
-            <%= User.find(pending_meeting.user_id).first_name %> is requesting a free call <br>
-            <!-- COde starting here need to be updated -->
-            Schedule: <%= pending_meeting.start_time.strftime("%c") %> <br>
-          <div class="status">
-            <p id="pending"><%= "Confirm?" %></p>
-            <div class="d-flex justify-content-between">
-               <%= link_to "See request in details to confirm", edit_meeting_path(pending_meeting) %>
+<div class="d-flex ">
+<div class="w-50 m-1 text-white bg-dark p-3">
+  <h5>Meetingsfor thismentor :<%= @meetings.where(mentor: @mentor).count %></h5>
+  <h5> My meetings ( @meetings du dessus.select) <%= @my_meetings.count %></h5>
+  <h5>Total of meetings ( meetings all): <%= @meetings.count %></h5>
+    <div class=""> <!-- Pending bookings list-->
+      <h2>Meetings requests  (<%= @pending_meetings.filter{|x| x.start_time > Time.now}.count %>)</h2>
+      <ul class="list-group">
+        <% @pending_meetings.filter{|x| x.start_time > Time.now}.each do |pending_meeting| %>
+            <li class="list-group-item mb-3">
+              <%= User.find(pending_meeting.user_id).first_name %> is requesting a free call <br>
+              <!-- COde starting here need to be updated -->
+              Schedule: <%= pending_meeting.start_time.strftime("%c") %> <br>
+            <div class="status">
+              <p id="pending"><%= "Confirm?" %></p>
+              <div class="d-flex justify-content-between">
+                <%= link_to "See request in details to confirm", edit_meeting_path(pending_meeting) %>
+              </div>
             </div>
-            <% end %>
-          </div>
-          </li>
-          <!-- until here -->
-      <% end %>
-    </ul>
+            </li>
+            <!-- until here -->
+        <% end %>
+      </ul>
+    </div>
   </div>
 
-  <div> <!-- Calendrier -->
-    <h2>Your calendar</h2>
+  <div class="w-50 m-1 text-white bg-dark p-3"> <!-- Calendrier -->
+    <h2>Your planning</h2>
     <%= month_calendar(events: @my_meetings, end_attribute: :end_time) do |date, meetings| %>
-      <%= date %>
+      <%= date.day %>
       <% @my_meetings.each do |meeting| %>
         <% if (meeting.start_time.day == date.day) && (meeting.start_time.month == date.month) && (meeting.start_time.year == date.year)  %>
           <div class="meeting">
