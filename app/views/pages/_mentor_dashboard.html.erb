@@ -1,6 +1,6 @@
 
 <div class="d-flex ">
-<div class="w-50 m-1 text-white bg-dark p-3">
+<div class="w-50 m-2 text-white bg-dark p-2 card">
   <h5>Meetingsfor thismentor :<%= @meetings.where(mentor: @mentor).count %></h5>
   <h5> My meetings ( @meetings du dessus.select) <%= @my_meetings.count %></h5>
   <h5>Total of meetings ( meetings all): <%= @meetings.count %></h5>
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="w-50 m-1 text-white bg-dark p-3"> <!-- Calendrier -->
+  <div class="w-50 m-2 text-white bg-dark p-2 card"> <!-- Calendrier -->
     <h2>Your planning</h2>
     <%= month_calendar(events: @my_meetings, end_attribute: :end_time) do |date, meetings| %>
       <%= date.day %>
