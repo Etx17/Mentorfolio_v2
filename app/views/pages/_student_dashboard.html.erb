@@ -2,7 +2,7 @@
 <p>You'r a <%= current_user.role %></p>
 <ul class="list-group">
   <% @meetings.each do |meeting| %>
-    <% if meeting.start_time > Date.new %>
+    <% if meeting.start_time > Time.now %>
       <li class="list-group-item">
         <% if meeting.status == "confirmed" %>
           <small class="text-success">Votre réservation est confirmée! <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> va vous contacter par mail.</small>  <br>

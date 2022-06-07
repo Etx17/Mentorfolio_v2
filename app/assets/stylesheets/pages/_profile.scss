@@ -1,0 +1,16 @@
+.profile-card {
+  width: 400px;
+  border-radius: 9px;
+  h1 {
+    background: linear-gradient(90deg, rgb(252, 221, 245) 0%, rgb(220, 239, 222) 0%, rgb(219, 254, 242) 51%, rgb(231, 255, 235) 100%);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600
+  }
+  .biodiv {
+    border: solid 1px whitesmoke;
+    border-radius: 9px;
+  }
+}
