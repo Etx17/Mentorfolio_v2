@@ -9,6 +9,7 @@
     <ul class="list-group">
       <% @pending_meetings.each do |pending_meeting| %>
           <li class="list-group-item mb-3">
+            <% if pending_meeting.start_date > Time.now %>
             <%= User.find(pending_meeting.user_id).first_name %> is requesting a free call <br>
             <!-- COde starting here need to be updated -->
             Schedule: <%= pending_meeting.start_time.strftime("%c") %> <br>
@@ -17,8 +18,7 @@
             <div class="d-flex justify-content-between">
                <%= link_to "See request in details to confirm", edit_meeting_path(pending_meeting) %>
             </div>
-
-
+            <% end %>
           </div>
           </li>
           <!-- until here -->
