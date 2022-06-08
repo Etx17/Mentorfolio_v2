@@ -1,6 +1,6 @@
 <div id="banner">
   <%= render partial: 'shared/navbar' %>
-  <div class="container bg-light.bg-gradient  p-2 rounded">
+  <div class="bg-light.bg-gradient ">
     <% if current_user.role == 'mentor' %>
       <%= render partial: 'mentor_dashboard' %>
     <% else %>
