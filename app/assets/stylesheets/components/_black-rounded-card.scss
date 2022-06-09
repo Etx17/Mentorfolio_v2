@@ -7,3 +7,22 @@
   padding: 10px;
   margin-right: 10px;
 }
+
+.white-rounded-card{
+  border-radius: 8px;
+  border: solid 1px rgb(45, 45, 45);
+  background-color: rgb(205, 202, 202);
+  list-style-type: none;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.small-card {
+  background-color: rgb(223, 221, 221);
+  border-radius: 8px;
+  box-shadow: 11px 12px 21px -4px rgba(48, 48, 48, 0.645);
+  -webkit-box-shadow: 11px 12px 21px -4px rgba(3,3,3,0.75);
+  -moz-box-shadow: 11px 12px 21px -4px rgba(63, 63, 63, 0.75);
+  list-style-type: none;
+  width: 300px;
+}

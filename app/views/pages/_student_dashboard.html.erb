@@ -1,26 +1,36 @@
 <div class="banner">
-</div>
-<div class="bg-dark mb-5 black-rounded-card row col-3 text-center" >
-  <h1>Welcome on your Dashboard, <br><%= current_user.first_name %> </h1>
-</div>
-<ul class="black-rounded-card bg-dark text-white col-6 d-flex">
-  <% @meetings.each do |meeting| %>
-    <% if meeting.start_time > Time.now %>
-      <li class="black-rounded-card col-4">
-        <% if meeting.status == "confirmed" %>
-          <small class="text-success">Votre réservation est confirmée! <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> va vous contacter par mail.</small>  <br>
-          Horaire: <br>
-          <%=  meeting.start_time.strftime("%c") %> <br>
-          Mentor: <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> <%= User.find(Mentor.find(meeting.mentor_id).user_id).last_name %> <%= link_to "Voir le profil", mentor_path(meeting.mentor) %>
-        <% else %>
-          <small class="text-danger">Waiting for <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> to confirm</small><br>
-          Horaire: <br>
-          <%=  meeting.start_time.strftime("%c") %> <br>
+    <div class="row text-center p-3">
+      <h2>Réservations</h2>
+    </div>
+
+    <div class="d-flex px-5">
+      <% @meetings.each do |meeting| %>
+        <% if meeting.start_time > Time.now %>
+            <% if meeting.status == "confirmed" %>
+              <div class="small-card d-flex flex-column mx-3">
+                <div class="p-2">
+                  <small class="text-success">Votre réservation est confirmée! <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> va vous contacter par mail.</small>  <br>
+                  Horaire: <br>
+                  <%=  meeting.start_time.strftime("%c") %> <br>
+                </div>
+                <%= cl_image_tag User.find(Mentor.find(meeting.mentor_id).user_id).photo.key, width: 300, height:300, crop: :fill %>
+                Mentor: <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> <%= User.find(Mentor.find(meeting.mentor_id).user_id).last_name %> <%= link_to "Voir le profil", mentor_path(meeting.mentor) %>
+              </div>
+            <% else %>
+              <div class="small-card d-flex flex-column mx-3">
+                <div class="p-2">
+                  <small class="text-danger">Waiting for <%= User.find(Mentor.find(meeting.mentor_id).user_id).first_name %> to confirm</small><br>
+                  Horaire: <br>
+                  <%=  meeting.start_time.strftime("%c") %> <br>
+                </div>
+                <%= cl_image_tag User.find(Mentor.find(meeting.mentor_id).user_id).photo.key, width: 300, height:300, crop: :fill %>
+                Mentor:
+              </div>
+            <% end %>
         <% end %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+      <% end %>
+    </div>
+</div>
 
 <!--
   <% if @validated_meeting %>

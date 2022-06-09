@@ -1,6 +1,7 @@
 .banner {
-  background-image: url("https://picsum.photos/id/1032/1600/200");
+  // background-image: url("https://picsum.photos/id/1032/1600/200");
+  background: rgb(232,170,218);
+  background: linear-gradient(90deg, rgba(232,170,218,1) 0%, rgba(255,209,202,1) 0%, rgba(169,193,254,1) 100%, rgba(251,247,149,1) 100%);
   background-size: cover;
-  height: 200px;
-
+  height: 100vh;
 }
